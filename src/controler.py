@@ -53,3 +53,12 @@ def latency(latency_ms, password):
             f"tc qdisc add dev veth6 root netem delay {latency_ms}ms",
             password,
         )
+
+def run_client(cmd, password):
+    subprocess.run(
+        f"sudo -S ip netns exec ns1 {cmd}",
+        shell=True,
+        input=password + "\n",
+        text=True,
+        check=True,
+    )
