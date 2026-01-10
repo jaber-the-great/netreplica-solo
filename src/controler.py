@@ -35,3 +35,21 @@ def shaping(download_mbps, upload_mbps, qdisc, password):
         f"tc qdisc add dev veth4 parent 1:10 {qdisc}",
         password,
     )
+
+def latency(latency_ms, password):
+    """
+    Add base latency to veth6 using netem.
+    latency_ms is in milliseconds.
+    If latency_ms == 0, netem is removed.
+    """
+    if latency_ms == 0:
+        run_sudo(
+            "tc qdisc del dev veth6 root 2>/dev/null || true",
+            password,
+        )
+    else:
+        run_sudo(
+            f"tc qdisc del dev veth6 root 2>/dev/null || true && "
+            f"tc qdisc add dev veth6 root netem delay {latency_ms}ms",
+            password,
+        )
