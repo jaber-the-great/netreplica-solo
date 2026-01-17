@@ -65,7 +65,7 @@ def run_client(cmd, password):
     )
 
 def capture(outputFileName, duration, flags, ip, vantagePoints, overwrite=False):
-    upstreamIface = 'veth6'
+    upstreamIface = 'veth4'
     downstreamIface = 'veth2'
     outDir = '/home/jaber/captures/'
     upFileName = outDir + 'up_' + outputFileName
