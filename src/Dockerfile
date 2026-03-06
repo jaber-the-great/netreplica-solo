@@ -6,6 +6,7 @@ RUN apt update && apt install -y \
     python3 python3-pip \
     tshark iputils-ping net-tools iperf3 \
     curl wget iproute2 iptables byobu nano \
+    speedtest-cli \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install jupyter notebook ipython
